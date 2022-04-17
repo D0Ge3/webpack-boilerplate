@@ -3,7 +3,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { merge } = require('webpack-merge')
 
 const paths = require('./paths')
-const common = require('./webpack.common.js')
+const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -16,7 +16,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /\.(sass|scss|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -24,7 +24,7 @@ module.exports = merge(common, {
             options: {
               importLoaders: 2,
               sourceMap: false,
-              modules: true,
+              modules: false,
             },
           },
           'postcss-loader',
